@@ -43,7 +43,7 @@ append cmd $tb_name "_tb/sv ../tb/" $tb_name "_tb/sv/" $tb_name "_tb.sv"
 eval $cmd
 
 vopt top_tb -o top_tb_optimized +acc +cover=sbce
-vsim top_tb_optimized +UVM_TESTNAME=top_test +OPTION=3  -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug  -assertcover -coverage
+vsim top_tb_optimized +UVM_TESTNAME=top_test +OPTION=3 -sv_seed random -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug  -assertcover -coverage
 run 0
 do wave.do
 log -r *

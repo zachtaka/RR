@@ -23,10 +23,10 @@ class RR_default_seq extends uvm_sequence #(trans);
   string cmdline;
   int test_command;
 
-  issue_first_instruction_seq issue_first_instruction_seq_h;
-  issue_both_instructions_seq issue_both_instructions_seq_h;
+  // issue_first_instruction_seq issue_first_instruction_seq_h;
+  // issue_both_instructions_seq issue_both_instructions_seq_h;
   rename_instructions_seq     rename_instructions_seq_h;
-  flush_seq                   flush_seq_h;
+  // flush_seq                   flush_seq_h;
 
   extern function new(string name = "");
 
@@ -36,22 +36,6 @@ class RR_default_seq extends uvm_sequence #(trans);
   extern function void set_starting_phase(uvm_phase phase);
 `endif
 
-
-
-task issue_first_instruction_seq_start();
-  issue_first_instruction_seq_h = issue_first_instruction_seq::type_id::create("issue_first_instruction_seq_h");
-  issue_first_instruction_seq_h.m_RR_agent = m_RR_agent;
-  issue_first_instruction_seq_h.randomize();
-  issue_first_instruction_seq_h.start(m_sequencer);
-endtask : issue_first_instruction_seq_start
-
-task issue_both_instructions_seq_start();
-  issue_both_instructions_seq_h = issue_both_instructions_seq::type_id::create("issue_both_instructions_seq_h");
-  issue_both_instructions_seq_h.m_RR_agent = m_RR_agent;
-  issue_both_instructions_seq_h.randomize();
-  issue_both_instructions_seq_h.start(m_sequencer);
-endtask : issue_both_instructions_seq_start
-
 task rename_instructions_seq_start();
   rename_instructions_seq_h = rename_instructions_seq::type_id::create("rename_instructions_seq_h");
   rename_instructions_seq_h.m_RR_agent = m_RR_agent;
@@ -59,19 +43,12 @@ task rename_instructions_seq_start();
   rename_instructions_seq_h.start(m_sequencer);
 endtask : rename_instructions_seq_start
 
-task flush_seq_start();
-  flush_seq_h = flush_seq::type_id::create("flush_seq_h");
-  flush_seq_h.m_RR_agent = m_RR_agent;
-  flush_seq_h.randomize();
-  flush_seq_h.start(m_sequencer);
-endtask : flush_seq_start
-
-task run_all_seq_start();
-  issue_first_instruction_seq_start();
-  issue_both_instructions_seq_start();
-  rename_instructions_seq_start();
-  flush_seq_start();
-endtask : run_all_seq_start
+// task flush_seq_start();
+//   flush_seq_h = flush_seq::type_id::create("flush_seq_h");
+//   flush_seq_h.m_RR_agent = m_RR_agent;
+//   flush_seq_h.randomize();
+//   flush_seq_h.start(m_sequencer);
+// endtask : flush_seq_start
 
 
 task body();
@@ -79,15 +56,15 @@ task body();
   test_command = cmdline.atoi();
 
   if(test_command==1) begin
-    issue_first_instruction_seq_start();
+    // issue_first_instruction_seq_start();
   end else if(test_command==2) begin
-    issue_both_instructions_seq_start();
+    // issue_both_instructions_seq_start();
   end else if(test_command==3) begin
     rename_instructions_seq_start();
   end else if(test_command==4) begin
-    flush_seq_start();
+    // flush_seq_start();
   end else if(test_command==5) begin
-    run_all_seq_start();
+    // run_all_seq_start();
   end
 
 endtask : body

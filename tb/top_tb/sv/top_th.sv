@@ -32,7 +32,7 @@ module top_th;
   initial
   begin
     reset = 0;         // Active low reset in this example
-    #75 reset = 1;
+    #50 reset = 1;
   end
 
   // You can insert code here by setting th_inc_inside_module in file common.tpl
@@ -49,7 +49,10 @@ module top_th;
   assign RR_if_0.clk   = clock;
   assign RR_if_rob_0.clk = clock;
   assign RR_if_fc_0.clk = clock;
-  // assign RR_if_0.rst_n = reset;
+  
+  assign RR_if_0.rst_n = reset;
+  assign RR_if_rob_0.rst_n = reset;
+  assign RR_if_fc_0.rst_n = reset;
 
   RR #(
     // Change parameters at util_pkg.sv

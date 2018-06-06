@@ -94,7 +94,7 @@ endfunction : build_phase
 function void top_env::connect_phase(uvm_phase phase);
   `uvm_info(get_type_name(), "In connect_phase", UVM_HIGH)
 
-  m_RR_agent.analysis_port.connect(m_RR_coverage.analysis_export);
+  m_RR_agent.m_monitor.analysis_port.connect(m_RR_coverage.analysis_export);
 
   m_RR_agent.m_monitor.analysis_port.connect(checker_h.analysis_export);
   m_RR_agent.m_monitor.commit_port.connect(checker_h.commit_port);

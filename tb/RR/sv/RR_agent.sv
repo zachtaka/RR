@@ -22,7 +22,7 @@ class RR_agent extends uvm_agent;
 
   `uvm_component_utils(RR_agent)
 
-  uvm_analysis_port #(trans) analysis_port;
+  uvm_analysis_port #(monitor_trans) analysis_port;
 
   RR_config       m_config;
   RR_sequencer_t  m_sequencer;

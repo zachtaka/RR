@@ -17,14 +17,14 @@
 `define RR_COVERAGE_SV
 
 // You can insert code here by setting agent_cover_inc_before_class in file RR.tpl
-
-class RR_coverage extends uvm_subscriber #(trans);
+import util_pkg::*;
+class RR_coverage extends uvm_subscriber #(monitor_trans);
 
   `uvm_component_utils(RR_coverage)
 
   RR_config m_config;    
   bit       m_is_covered;
-  trans     m_item;
+  monitor_trans     m_item;
      
   // You can replace covergroup m_cov by setting agent_cover_inc in file RR.tpl
   // or remove covergroup m_cov by setting agent_cover_generate_methods_inside_class = no in file RR.tpl
@@ -102,7 +102,7 @@ class RR_coverage extends uvm_subscriber #(trans);
   // You can remove new, write, and report_phase by setting agent_cover_generate_methods_inside_class = no in file RR.tpl
 
   extern function new(string name, uvm_component parent);
-  extern function void write(input trans t);
+  extern function void write(input monitor_trans t);
   extern function void build_phase(uvm_phase phase);
   extern function void report_phase(uvm_phase phase);
 
@@ -120,7 +120,7 @@ function RR_coverage::new(string name, uvm_component parent);
 endfunction : new
 
 
-function void RR_coverage::write(input trans t);
+function void RR_coverage::write(input monitor_trans t);
   m_item = t;
   if (m_config.coverage_enable)
   begin

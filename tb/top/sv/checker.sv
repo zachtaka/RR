@@ -3,7 +3,7 @@
 `uvm_analysis_imp_decl(_commit_port) 
 
 import util_pkg::*;
-class Checker extends uvm_subscriber #(trans);
+class Checker extends uvm_subscriber #(monitor_trans);
   `uvm_component_utils(Checker)
 
   uvm_analysis_imp_commit_port #(writeback_toARF, Checker) commit_port; 
@@ -13,7 +13,7 @@ class Checker extends uvm_subscriber #(trans);
   virtual RR_if_rob vif_rob;  
   checker_utils utils;
 
-  trans m_trans;
+  monitor_trans m_trans;
   bit valid_o_1_GR,valid_o_2_GR;
   new_entries rob_requests_GR_1,rob_requests_GR_2;
   renamed_instr instruction_o_1_GR,instruction_o_2_GR;
@@ -52,7 +52,7 @@ class Checker extends uvm_subscriber #(trans);
     end
   endfunction : write_commit_port
 
-  function void write(input trans t);
+  function void write(input monitor_trans t);
     m_trans = t;
 
     if(!m_trans.rst_n) begin

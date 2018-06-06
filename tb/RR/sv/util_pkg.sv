@@ -1,6 +1,12 @@
 package util_pkg;
 
 // Testbench structs & parameters
+// Instruction parameters
+parameter int INS_NUM = 5;
+parameter int TWO_INS_RATE = 40;
+parameter int SRCS_IN_RENAME_RANGE = 100;
+parameter int RENAME_RATE = 100;
+parameter int DEPENDENCE_RATE = 0;
 // ROB
 parameter int ROB_FULL_RATE = 0;
 parameter int ROB_TWO_EMPTY_RATE = 100;
@@ -12,18 +18,18 @@ parameter int READY_RATE = 100;
 
 
 typedef struct packed {
-    logic [5 : 0] lreg;
-    logic [5 : 0] preg;
-    logic [5 : 0] ppreg;
-    logic         flushed;
-    logic         valid_commit;
-    logic         rat_id;
-    logic         is_branch;
-    logic         retired;
+  logic [5 : 0] lreg;
+  logic [5 : 0] preg;
+  logic [5 : 0] ppreg;
+  logic         flushed;
+  logic         valid_commit;
+  logic         rat_id;
+  logic         is_branch;
+  logic         retired;
 } rob_request_e;
 
 
-// Testbench structs
+
 
 
 //DUT parameters
@@ -180,6 +186,34 @@ typedef struct packed {
     logic [ 2 : 0] ticket      ;
 } predictor_update;
 //---------------------------------------------------------------------------------------
+
+
+typedef struct packed {
+  // Transaction variables
+  logic                     rst_n;
+  //Port towards ID
+  logic                     ready_o;
+  logic                     valid_i_1;
+  decoded_instr             instruction_1;
+  logic                     valid_i_2;
+  decoded_instr             instruction_2;
+  //Port towards IS
+  logic                     ready_i;
+  logic                     valid_o_1;
+  renamed_instr             instruction_o_1;
+  logic                     valid_o_2;
+  renamed_instr             instruction_o_2;
+  //Port towards ROB
+  to_issue                  rob_status;
+  new_entries               rob_requests;
+  //Commit Port
+  writeback_toARF           commit;
+  //Flush Port
+  logic                     flush_valid;
+  logic [$clog2(C_NUM)-1:0] flush_rat_id;
+  predictor_update          pr_update;
+} monitor_trans;
+
 
 endpackage
 

@@ -17,7 +17,7 @@
 `define RR_MONITOR_SV
 
 // You can insert code here by setting monitor_inc_before_class in file RR.tpl
-
+import util_pkg::*;
 class RR_monitor extends uvm_monitor;
 
   `uvm_component_utils(RR_monitor)
@@ -27,10 +27,10 @@ class RR_monitor extends uvm_monitor;
   virtual RR_if_fc  vif_fc;
 
   
-  trans m_trans;
+  monitor_trans m_trans;
   writeback_toARF commit_trans;
 
-  uvm_analysis_port #(trans) analysis_port;
+  uvm_analysis_port #(monitor_trans) analysis_port;
   uvm_analysis_port #(writeback_toARF) commit_port;
 
   extern function new(string name, uvm_component parent);
@@ -39,7 +39,7 @@ class RR_monitor extends uvm_monitor;
 
   task run_phase(uvm_phase phase);
   	forever begin 
-  		m_trans = trans::type_id::create("m_trans");
+  		
 
   		m_trans.rst_n           = vif.rst_n;
 		//Port towards ID

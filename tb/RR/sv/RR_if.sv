@@ -18,8 +18,6 @@
 import util_pkg::*;
 interface RR_if(); 
 
-  timeunit      1ns;
-  timeprecision 1ps;
 
   import RR_pkg::*;
 

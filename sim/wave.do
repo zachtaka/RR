@@ -5,39 +5,26 @@ add wave -noupdate /top_tb/th/uut/rst_n
 add wave -noupdate -divider -height 25 {Port towards ID}
 add wave -noupdate /top_tb/th/uut/ready_o
 add wave -noupdate -divider {Instruction 1 input}
-add wave -noupdate -childformat {{/top_tb/th/uut/instruction_1.pc -radix unsigned}} -subitemconfig {/top_tb/th/uut/instruction_1.pc {-height 15 -radix unsigned}} /top_tb/th/uut/instruction_1
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_1.source1
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_1.source2
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_1.source3
 add wave -noupdate -radix unsigned -childformat {{{[5]} -radix unsigned} {{[4]} -radix unsigned} {{[3]} -radix unsigned} {{[2]} -radix unsigned} {{[1]} -radix unsigned} {{[0]} -radix unsigned}} -subitemconfig {{/top_tb/th/RR_if_0/instruction_1.destination[5]} {-radix unsigned} {/top_tb/th/RR_if_0/instruction_1.destination[4]} {-radix unsigned} {/top_tb/th/RR_if_0/instruction_1.destination[3]} {-radix unsigned} {/top_tb/th/RR_if_0/instruction_1.destination[2]} {-radix unsigned} {/top_tb/th/RR_if_0/instruction_1.destination[1]} {-radix unsigned} {/top_tb/th/RR_if_0/instruction_1.destination[0]} {-radix unsigned}} /top_tb/th/RR_if_0/instruction_1.destination
-add wave -noupdate /top_tb/th/uut/instruction_1.is_valid
 add wave -noupdate /top_tb/th/uut/instruction_1.is_branch
 add wave -noupdate -radix binary /top_tb/th/RR_if_0/valid_i_1
 add wave -noupdate /top_tb/th/uut/instr_a_rd_rename
 add wave -noupdate -divider {Instruction 2 input}
-add wave -noupdate -childformat {{/top_tb/th/uut/instruction_2.pc -radix unsigned}} -subitemconfig {/top_tb/th/uut/instruction_2.pc {-height 15 -radix unsigned}} /top_tb/th/uut/instruction_2
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_2.source1
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_2.source2
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_2.source3
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_2.destination
-add wave -noupdate /top_tb/th/uut/instruction_2.is_valid
 add wave -noupdate /top_tb/th/uut/instruction_2.is_branch
 add wave -noupdate -radix binary /top_tb/th/RR_if_0/valid_i_2
 add wave -noupdate /top_tb/th/uut/instr_b_rd_rename
 add wave -noupdate -divider -height 25 {Commit Port}
-add wave -noupdate -childformat {{/top_tb/th/RR_if_0/commit.ldst -radix unsigned} {/top_tb/th/RR_if_0/commit.pdst -radix unsigned} {/top_tb/th/RR_if_0/commit.ppdst -radix unsigned}} -subitemconfig {/top_tb/th/RR_if_0/commit.ldst {-height 15 -radix unsigned} /top_tb/th/RR_if_0/commit.pdst {-height 15 -radix unsigned} /top_tb/th/RR_if_0/commit.ppdst {-height 15 -radix unsigned}} /top_tb/th/RR_if_0/commit
-add wave -noupdate /top_tb/th/RR_if_0/commit.valid_commit
-add wave -noupdate /top_tb/th/RR_if_0/commit.valid_write
-add wave -noupdate /top_tb/th/RR_if_0/commit.flushed
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/commit.ldst
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/commit.pdst
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/commit.ppdst
-add wave -noupdate /top_tb/th/RR_if_0/commit.data
-add wave -noupdate /top_tb/th/RR_if_0/commit.ticket
-add wave -noupdate /top_tb/th/RR_if_0/commit.pc
+add wave -noupdate -childformat {{/top_tb/th/RR_if_fc_0/commit.ldst -radix unsigned} {/top_tb/th/RR_if_fc_0/commit.pdst -radix unsigned} {/top_tb/th/RR_if_fc_0/commit.ppdst -radix unsigned}} -expand -subitemconfig {/top_tb/th/RR_if_fc_0/commit.ldst {-radix unsigned} /top_tb/th/RR_if_fc_0/commit.pdst {-radix unsigned} /top_tb/th/RR_if_fc_0/commit.ppdst {-radix unsigned}} /top_tb/th/RR_if_fc_0/commit
 add wave -noupdate -divider -height 25 {Flush Port}
-add wave -noupdate /top_tb/th/RR_if_0/flush_valid
-add wave -noupdate /top_tb/th/RR_if_0/flush_rat_id
+add wave -noupdate /top_tb/th/RR_if_fc_0/flush_valid
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_fc_0/flush_rat_id
 add wave -noupdate -divider -height 25 {Port towards IS}
 add wave -noupdate /top_tb/th/RR_if_0/ready_i
 add wave -noupdate -divider {Instruction 1 output}
@@ -55,22 +42,15 @@ add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_o_2.source3
 add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/instruction_o_2.destination
 add wave -noupdate -radix binary /top_tb/th/RR_if_0/valid_o_2
 add wave -noupdate -divider -height 25 {Port towards ROB}
-add wave -noupdate /top_tb/th/RR_if_0/rob_status
-add wave -noupdate -childformat {{/top_tb/th/RR_if_0/rob_requests.lreg_1 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.preg_1 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.ppreg_1 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.microoperation_1 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.pc_1 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.valid_request_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.valid_dest_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.lreg_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.preg_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.ppreg_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.microoperation_2 -radix unsigned} {/top_tb/th/RR_if_0/rob_requests.pc_2 -radix unsigned}} -subitemconfig {/top_tb/th/RR_if_0/rob_requests.lreg_1 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.preg_1 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.ppreg_1 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.microoperation_1 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.pc_1 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.valid_request_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.valid_dest_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.lreg_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.preg_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.ppreg_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.microoperation_2 {-height 15 -radix unsigned} /top_tb/th/RR_if_0/rob_requests.pc_2 {-height 15 -radix unsigned}} /top_tb/th/RR_if_0/rob_requests
-add wave -noupdate /top_tb/th/RR_if_0/rob_requests.valid_request_1
-add wave -noupdate /top_tb/th/RR_if_0/rob_requests.valid_dest_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.lreg_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.preg_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.ppreg_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.microoperation_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.pc_1
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.valid_request_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.valid_dest_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.lreg_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.preg_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.ppreg_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.microoperation_2
-add wave -noupdate -radix unsigned /top_tb/th/RR_if_0/rob_requests.pc_2
+add wave -noupdate -expand /top_tb/th/RR_if_rob_0/rob_status
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.valid_request_1
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.lreg_1
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.preg_1
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.ppreg_1
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.valid_request_2
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.lreg_2
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.preg_2
+add wave -noupdate -radix unsigned /top_tb/th/RR_if_rob_0/rob_requests.ppreg_2
 add wave -noupdate -divider RAT
 add wave -noupdate -childformat {{{/top_tb/th/uut/RAT/CurrentRAT[7]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[6]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[5]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[4]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[3]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[2]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[1]} -radix unsigned} {{/top_tb/th/uut/RAT/CurrentRAT[0]} -radix unsigned}} -expand -subitemconfig {{/top_tb/th/uut/RAT/CurrentRAT[7]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[6]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[5]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[4]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[3]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[2]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[1]} {-height 15 -radix unsigned} {/top_tb/th/uut/RAT/CurrentRAT[0]} {-height 15 -radix unsigned}} /top_tb/th/uut/RAT/CurrentRAT
 add wave -noupdate -divider {FREE LIST}
@@ -87,7 +67,7 @@ add wave -noupdate /top_tb/th/uut/free_list/valid_2
 add wave -noupdate /top_tb/th/uut/free_list/pop_2
 add wave -noupdate -expand /top_tb/th/uut/CurrentRAT_dbg
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10078875 ps} 0}
+WaveRestoreCursors {{Cursor 1} {130011 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 234
 configure wave -valuecolwidth 74
@@ -103,4 +83,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {17671500 ps}
+WaveRestoreZoom {0 ps} {255773 ps}
