@@ -1,0 +1,300 @@
+COVERGROUP COVERAGE:
+-----------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal    Status               
+                                                                                              
+-----------------------------------------------------------------------------------------------
+ TYPE /RR_pkg/RR_coverage/m_cov                         98.2%        100    Uncovered            
+    covered/total bins:                                    76         77                      
+    missing/total bins:                                     1         77                      
+    % Hit:                                              98.7%        100                      
+    Coverpoint m_cov::cp_rst_n                         100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                        11          1    Covered              
+        bin auto[1]                                       428          1    Covered              
+    Coverpoint m_cov::cp_Instruction_1_src1            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src1_in_rename_range[0]                  18          1    Covered              
+        bin Ins_1_src1_in_rename_range[1]                  13          1    Covered              
+        bin Ins_1_src1_in_rename_range[2]                  14          1    Covered              
+        bin Ins_1_src1_in_rename_range[3]                   9          1    Covered              
+        bin Ins_1_src1_in_rename_range[4]                  14          1    Covered              
+        bin Ins_1_src1_in_rename_range[5]                   9          1    Covered              
+        bin Ins_1_src1_in_rename_range[6]                  13          1    Covered              
+        bin Ins_1_src1_in_rename_range[7]                  14          1    Covered              
+        default bin Ins_1_src1_out_of_rename_range        335               Occurred             
+    Coverpoint m_cov::cp_Instruction_1_src2            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src2_in_rename_range[0]                  13          1    Covered              
+        bin Ins_1_src2_in_rename_range[1]                  16          1    Covered              
+        bin Ins_1_src2_in_rename_range[2]                   6          1    Covered              
+        bin Ins_1_src2_in_rename_range[3]                  12          1    Covered              
+        bin Ins_1_src2_in_rename_range[4]                  12          1    Covered              
+        bin Ins_1_src2_in_rename_range[5]                  20          1    Covered              
+        bin Ins_1_src2_in_rename_range[6]                  10          1    Covered              
+        bin Ins_1_src2_in_rename_range[7]                  17          1    Covered              
+        default bin Ins_1_src2_out_of_rename_range        333               Occurred             
+    Coverpoint m_cov::cp_Instruction_1_src3            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src3_in_rename_range[0]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[1]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[2]                   9          1    Covered              
+        bin Ins_1_src3_in_rename_range[3]                  21          1    Covered              
+        bin Ins_1_src3_in_rename_range[4]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[5]                  10          1    Covered              
+        bin Ins_1_src3_in_rename_range[6]                  12          1    Covered              
+        bin Ins_1_src3_in_rename_range[7]                  17          1    Covered              
+        default bin Ins_1_src3_out_of_rename_range        328               Occurred             
+    Coverpoint m_cov::cp_Instruction_1_dest            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_dest_in_rename_range[0]                  46          1    Covered              
+        bin Ins_1_dest_in_rename_range[1]                  55          1    Covered              
+        bin Ins_1_dest_in_rename_range[2]                  54          1    Covered              
+        bin Ins_1_dest_in_rename_range[3]                  47          1    Covered              
+        bin Ins_1_dest_in_rename_range[4]                  63          1    Covered              
+        bin Ins_1_dest_in_rename_range[5]                  53          1    Covered              
+        bin Ins_1_dest_in_rename_range[6]                  46          1    Covered              
+        bin Ins_1_dest_in_rename_range[7]                  57          1    Covered              
+        default bin Ins_1_src3_out_of_rename_range         18               Occurred             
+    Coverpoint m_cov::cp_Instruction_2_src1            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src1_in_rename_range[0]                  13          1    Covered              
+        bin Ins_2_src1_in_rename_range[1]                  15          1    Covered              
+        bin Ins_2_src1_in_rename_range[2]                  11          1    Covered              
+        bin Ins_2_src1_in_rename_range[3]                  12          1    Covered              
+        bin Ins_2_src1_in_rename_range[4]                  17          1    Covered              
+        bin Ins_2_src1_in_rename_range[5]                  17          1    Covered              
+        bin Ins_2_src1_in_rename_range[6]                  13          1    Covered              
+        bin Ins_2_src1_in_rename_range[7]                  12          1    Covered              
+        default bin Ins_2_src1_out_of_rename_range        329               Occurred             
+    Coverpoint m_cov::cp_Instruction_2_src2            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src2_in_rename_range[0]                  19          1    Covered              
+        bin Ins_2_src2_in_rename_range[1]                  13          1    Covered              
+        bin Ins_2_src2_in_rename_range[2]                  14          1    Covered              
+        bin Ins_2_src2_in_rename_range[3]                  18          1    Covered              
+        bin Ins_2_src2_in_rename_range[4]                  13          1    Covered              
+        bin Ins_2_src2_in_rename_range[5]                  12          1    Covered              
+        bin Ins_2_src2_in_rename_range[6]                  15          1    Covered              
+        bin Ins_2_src2_in_rename_range[7]                  13          1    Covered              
+        default bin Ins_2_src2_out_of_rename_range        322               Occurred             
+    Coverpoint m_cov::cp_Instruction_2_src3            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src3_in_rename_range[0]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[1]                  10          1    Covered              
+        bin Ins_2_src3_in_rename_range[2]                  13          1    Covered              
+        bin Ins_2_src3_in_rename_range[3]                  19          1    Covered              
+        bin Ins_2_src3_in_rename_range[4]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[5]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[6]                  10          1    Covered              
+        bin Ins_2_src3_in_rename_range[7]                  10          1    Covered              
+        default bin Ins_2_src3_out_of_rename_range        335               Occurred             
+    Coverpoint m_cov::cp_Instruction_2_dest            100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_dest_in_rename_range[0]                  55          1    Covered              
+        bin Ins_2_dest_in_rename_range[1]                  49          1    Covered              
+        bin Ins_2_dest_in_rename_range[2]                  46          1    Covered              
+        bin Ins_2_dest_in_rename_range[3]                  64          1    Covered              
+        bin Ins_2_dest_in_rename_range[4]                  56          1    Covered              
+        bin Ins_2_dest_in_rename_range[5]                  51          1    Covered              
+        bin Ins_2_dest_in_rename_range[6]                  54          1    Covered              
+        bin Ins_2_dest_in_rename_range[7]                  49          1    Covered              
+        default bin Ins_2_dest_out_of_rename_range         15               Occurred             
+    Coverpoint m_cov::cp_Instruction_1_branch          100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       431          1    Covered              
+        bin auto[1]                                         8          1    Covered              
+    Coverpoint m_cov::cp_Instruction_2_branch          100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       438          1    Covered              
+        bin auto[1]                                         1          1    Covered              
+    Coverpoint m_cov::cp_flush                         100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       436          1    Covered              
+        bin auto[1]                                         3          1    Covered              
+    Coverpoint m_cov::cp_flush_id                       75.0%        100    Uncovered            
+        covered/total bins:                                 3          4                      
+        missing/total bins:                                 1          4                      
+        % Hit:                                          75.0%        100                      
+        bin auto[0]                                       250          1    Covered              
+        bin auto[1]                                         0          1    ZERO                 
+        bin auto[2]                                       157          1    Covered              
+        bin auto[3]                                        32          1    Covered              
+    Cross m_cov::flush_cross_id                        100.0%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                         100.0%        100                      
+        ignore_bin ignore1                                436               Occurred             
+        bin valid_flash_cross_id                            3          1    Covered              
+ CLASS RR_coverage
+ Covergroup instance \/RR_pkg::RR_coverage::m_cov       98.2%        100    Uncovered            
+    covered/total bins:                                    76         77                      
+    missing/total bins:                                     1         77                      
+    % Hit:                                              98.7%        100                      
+    Coverpoint cp_rst_n                                100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                        11          1    Covered              
+        bin auto[1]                                       428          1    Covered              
+    Coverpoint cp_Instruction_1_src1                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src1_in_rename_range[0]                  18          1    Covered              
+        bin Ins_1_src1_in_rename_range[1]                  13          1    Covered              
+        bin Ins_1_src1_in_rename_range[2]                  14          1    Covered              
+        bin Ins_1_src1_in_rename_range[3]                   9          1    Covered              
+        bin Ins_1_src1_in_rename_range[4]                  14          1    Covered              
+        bin Ins_1_src1_in_rename_range[5]                   9          1    Covered              
+        bin Ins_1_src1_in_rename_range[6]                  13          1    Covered              
+        bin Ins_1_src1_in_rename_range[7]                  14          1    Covered              
+        default bin Ins_1_src1_out_of_rename_range        335               Occurred             
+    Coverpoint cp_Instruction_1_src2                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src2_in_rename_range[0]                  13          1    Covered              
+        bin Ins_1_src2_in_rename_range[1]                  16          1    Covered              
+        bin Ins_1_src2_in_rename_range[2]                   6          1    Covered              
+        bin Ins_1_src2_in_rename_range[3]                  12          1    Covered              
+        bin Ins_1_src2_in_rename_range[4]                  12          1    Covered              
+        bin Ins_1_src2_in_rename_range[5]                  20          1    Covered              
+        bin Ins_1_src2_in_rename_range[6]                  10          1    Covered              
+        bin Ins_1_src2_in_rename_range[7]                  17          1    Covered              
+        default bin Ins_1_src2_out_of_rename_range        333               Occurred             
+    Coverpoint cp_Instruction_1_src3                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_src3_in_rename_range[0]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[1]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[2]                   9          1    Covered              
+        bin Ins_1_src3_in_rename_range[3]                  21          1    Covered              
+        bin Ins_1_src3_in_rename_range[4]                  14          1    Covered              
+        bin Ins_1_src3_in_rename_range[5]                  10          1    Covered              
+        bin Ins_1_src3_in_rename_range[6]                  12          1    Covered              
+        bin Ins_1_src3_in_rename_range[7]                  17          1    Covered              
+        default bin Ins_1_src3_out_of_rename_range        328               Occurred             
+    Coverpoint cp_Instruction_1_dest                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_1_dest_in_rename_range[0]                  46          1    Covered              
+        bin Ins_1_dest_in_rename_range[1]                  55          1    Covered              
+        bin Ins_1_dest_in_rename_range[2]                  54          1    Covered              
+        bin Ins_1_dest_in_rename_range[3]                  47          1    Covered              
+        bin Ins_1_dest_in_rename_range[4]                  63          1    Covered              
+        bin Ins_1_dest_in_rename_range[5]                  53          1    Covered              
+        bin Ins_1_dest_in_rename_range[6]                  46          1    Covered              
+        bin Ins_1_dest_in_rename_range[7]                  57          1    Covered              
+        default bin Ins_1_src3_out_of_rename_range         18               Occurred             
+    Coverpoint cp_Instruction_2_src1                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src1_in_rename_range[0]                  13          1    Covered              
+        bin Ins_2_src1_in_rename_range[1]                  15          1    Covered              
+        bin Ins_2_src1_in_rename_range[2]                  11          1    Covered              
+        bin Ins_2_src1_in_rename_range[3]                  12          1    Covered              
+        bin Ins_2_src1_in_rename_range[4]                  17          1    Covered              
+        bin Ins_2_src1_in_rename_range[5]                  17          1    Covered              
+        bin Ins_2_src1_in_rename_range[6]                  13          1    Covered              
+        bin Ins_2_src1_in_rename_range[7]                  12          1    Covered              
+        default bin Ins_2_src1_out_of_rename_range        329               Occurred             
+    Coverpoint cp_Instruction_2_src2                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src2_in_rename_range[0]                  19          1    Covered              
+        bin Ins_2_src2_in_rename_range[1]                  13          1    Covered              
+        bin Ins_2_src2_in_rename_range[2]                  14          1    Covered              
+        bin Ins_2_src2_in_rename_range[3]                  18          1    Covered              
+        bin Ins_2_src2_in_rename_range[4]                  13          1    Covered              
+        bin Ins_2_src2_in_rename_range[5]                  12          1    Covered              
+        bin Ins_2_src2_in_rename_range[6]                  15          1    Covered              
+        bin Ins_2_src2_in_rename_range[7]                  13          1    Covered              
+        default bin Ins_2_src2_out_of_rename_range        322               Occurred             
+    Coverpoint cp_Instruction_2_src3                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_src3_in_rename_range[0]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[1]                  10          1    Covered              
+        bin Ins_2_src3_in_rename_range[2]                  13          1    Covered              
+        bin Ins_2_src3_in_rename_range[3]                  19          1    Covered              
+        bin Ins_2_src3_in_rename_range[4]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[5]                  14          1    Covered              
+        bin Ins_2_src3_in_rename_range[6]                  10          1    Covered              
+        bin Ins_2_src3_in_rename_range[7]                  10          1    Covered              
+        default bin Ins_2_src3_out_of_rename_range        335               Occurred             
+    Coverpoint cp_Instruction_2_dest                   100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+        bin Ins_2_dest_in_rename_range[0]                  55          1    Covered              
+        bin Ins_2_dest_in_rename_range[1]                  49          1    Covered              
+        bin Ins_2_dest_in_rename_range[2]                  46          1    Covered              
+        bin Ins_2_dest_in_rename_range[3]                  64          1    Covered              
+        bin Ins_2_dest_in_rename_range[4]                  56          1    Covered              
+        bin Ins_2_dest_in_rename_range[5]                  51          1    Covered              
+        bin Ins_2_dest_in_rename_range[6]                  54          1    Covered              
+        bin Ins_2_dest_in_rename_range[7]                  49          1    Covered              
+        default bin Ins_2_dest_out_of_rename_range         15               Occurred             
+    Coverpoint cp_Instruction_1_branch                 100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       431          1    Covered              
+        bin auto[1]                                         8          1    Covered              
+    Coverpoint cp_Instruction_2_branch                 100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       438          1    Covered              
+        bin auto[1]                                         1          1    Covered              
+    Coverpoint cp_flush                                100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin auto[0]                                       436          1    Covered              
+        bin auto[1]                                         3          1    Covered              
+    Coverpoint cp_flush_id                              75.0%        100    Uncovered            
+        covered/total bins:                                 3          4                      
+        missing/total bins:                                 1          4                      
+        % Hit:                                          75.0%        100                      
+        bin auto[0]                                       250          1    Covered              
+        bin auto[1]                                         0          1    ZERO                 
+        bin auto[2]                                       157          1    Covered              
+        bin auto[3]                                        32          1    Covered              
+    Cross flush_cross_id                               100.0%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                         100.0%        100                      
+        ignore_bin ignore1                                436               Occurred             
+        bin valid_flash_cross_id                            3          1    Covered              
+
+TOTAL COVERGROUP COVERAGE: 98.2%  COVERGROUP TYPES: 1
