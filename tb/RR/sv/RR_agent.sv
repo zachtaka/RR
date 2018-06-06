@@ -27,6 +27,8 @@ class RR_agent extends uvm_agent;
   RR_config       m_config;
   RR_sequencer_t  m_sequencer;
   RR_driver       m_driver;
+  RR_driver_rob   m_driver_rob;
+  RR_driver_flush_commit m_driver_fc;
   RR_monitor      m_monitor;
 
   local int m_is_active = -1;
@@ -63,11 +65,17 @@ function void RR_agent::build_phase(uvm_phase phase);
 
   if (get_is_active() == UVM_ACTIVE)
   begin
-    m_driver    = RR_driver     ::type_id::create("m_driver", this);
-    m_sequencer = RR_sequencer_t::type_id::create("m_sequencer", this);
+    m_driver     = RR_driver     ::type_id::create("m_driver", this);
+    m_driver_rob = RR_driver_rob ::type_id::create("m_driver_rob", this);
+    m_driver_fc  = RR_driver_flush_commit::type_id::create("m_driver_fc", this);
+    m_sequencer  = RR_sequencer_t::type_id::create("m_sequencer", this);
   end
 
-
+  m_driver.vif_rob     = m_config.vif_rob;
+  m_driver_rob.vif_rob = m_config.vif_rob;
+  m_driver_fc.vif      = m_config.vif;
+  m_driver_fc.vif_rob  = m_config.vif_rob;
+  m_driver_fc.vif_fc   = m_config.vif_fc;
   // You can insert code here by setting agent_append_to_build_phase in file RR.tpl
 
 endfunction : build_phase
@@ -78,6 +86,8 @@ function void RR_agent::connect_phase(uvm_phase phase);
     `uvm_warning(get_type_name(), "RR virtual interface is not set!")
 
   m_monitor.vif = m_config.vif;
+  m_monitor.vif_rob = m_config.vif_rob;
+  m_monitor.vif_fc = m_config.vif_fc;
   m_monitor.analysis_port.connect(analysis_port);
 
   if (get_is_active() == UVM_ACTIVE)

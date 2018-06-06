@@ -5,9 +5,14 @@ vlib work
 
 vlog -sv ../tb/RR/sv/util_pkg.sv
 
-#compile the dut code
+#Compile DUT
 set cmd "vlog -F ../dut/files.f"
 eval $cmd
+
+# Compile interfaces
+vlog -sv ../tb/RR/sv/RR_if_rob.sv
+vlog -sv ../tb/RR/sv/RR_if_fc.sv
+
 
 set tb_name top
 set agent_list {\ 

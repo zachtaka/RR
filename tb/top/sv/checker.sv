@@ -8,7 +8,9 @@ class Checker extends uvm_subscriber #(trans);
 
   uvm_analysis_imp_commit_port #(writeback_toARF, Checker) commit_port; 
 
-  virtual RR_if  vif;
+  virtual RR_if    vif;
+  virtual RR_if_fc vif_fc;
+  virtual RR_if_rob vif_rob;  
   checker_utils utils;
 
   trans m_trans;
@@ -295,7 +297,7 @@ class Checker extends uvm_subscriber #(trans);
   
   task check_RAT_recovery_after_flush();
     forever begin 
-      if(vif.flush_valid) begin
+      if(vif_fc.flush_valid) begin
         @(negedge vif.clk);
         if (utils.recovered_RAT_GR != vif.CurrentRAT) 
         `uvm_error(get_type_name(),$sformatf("[ERROR] Wrong RAT recovery after flush. Expected RAT = %p, but found %p", utils.recovered_RAT_GR, vif.CurrentRAT ))
@@ -312,22 +314,22 @@ class Checker extends uvm_subscriber #(trans);
       Ins_1_rename = vif.instruction_1.destination>7 && vif.instruction_1.destination<16;
       Ins_2_rename = vif.instruction_2.destination>7 && vif.instruction_2.destination<16;
       
-      if(vif.flush_valid || !vif.rst_n) begin
+      if(vif_fc.flush_valid || !vif.rst_n) begin
         ready_o_GR = 1;
       end else if(vif.ready_i) begin
         if(vif.valid_i_1 && vif.valid_i_2) begin
           if(Ins_1_rename && Ins_2_rename) begin
-            ready_o_GR = utils.free_reg_counter>1 && vif.rob_status.two_empty && !vif.rob_status.is_full;
+            ready_o_GR = utils.free_reg_counter>1 && vif_rob.rob_status.two_empty && !vif_rob.rob_status.is_full;
           end else if(Ins_1_rename || Ins_2_rename) begin
-            ready_o_GR = utils.free_reg_counter>0 && vif.rob_status.two_empty && !vif.rob_status.is_full;
+            ready_o_GR = utils.free_reg_counter>0 && vif_rob.rob_status.two_empty && !vif_rob.rob_status.is_full;
           end else begin 
-            ready_o_GR = vif.rob_status.two_empty && !vif.rob_status.is_full;
+            ready_o_GR = vif_rob.rob_status.two_empty && !vif_rob.rob_status.is_full;
           end
         end else if(vif.valid_i_1 && !vif.valid_i_2) begin
           if(Ins_1_rename) begin
-            ready_o_GR = utils.free_reg_counter>0 && !vif.rob_status.is_full;
+            ready_o_GR = utils.free_reg_counter>0 && !vif_rob.rob_status.is_full;
           end else begin 
-            ready_o_GR = !vif.rob_status.is_full;
+            ready_o_GR = !vif_rob.rob_status.is_full;
           end
         end else begin 
           ready_o_GR = 1;

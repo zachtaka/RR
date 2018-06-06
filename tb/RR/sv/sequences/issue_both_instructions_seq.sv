@@ -47,8 +47,6 @@ class issue_both_instructions_seq extends base_sequence;
   task all_conditions_met();
     `uvm_info(get_type_name(),"Starting sequence: all_conditions_met",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -71,8 +69,6 @@ class issue_both_instructions_seq extends base_sequence;
   task free_list_not_empty();
     `uvm_info(get_type_name(),"Starting sequence: free_list_not_empty",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(5);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -94,8 +90,6 @@ class issue_both_instructions_seq extends base_sequence;
   task IS_not_ready();
     `uvm_info(get_type_name(),"Starting sequence: IS_not_ready",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(10);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -117,8 +111,6 @@ class issue_both_instructions_seq extends base_sequence;
   task ROB_two_empty();
     `uvm_info(get_type_name(),"Starting sequence: ROB_two_empty",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(40), .ROB_two_empty_rate_i(20));
     repeat (200) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -140,8 +132,6 @@ class issue_both_instructions_seq extends base_sequence;
   task valid_flash();
     `uvm_info(get_type_name(),"Starting sequence: valid_flash",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -165,8 +155,6 @@ class issue_both_instructions_seq extends base_sequence;
   task send_invalid_Ins();
     `uvm_info(get_type_name(),"Starting sequence: send_invalid_Ins",UVM_MEDIUM)
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin
       req = trans::type_id::create("req");
       start_item(req);
@@ -192,8 +180,6 @@ class issue_both_instructions_seq extends base_sequence;
     `uvm_info(get_type_name(),"Starting sequence: random_rates",UVM_MEDIUM)
     repeat(5) begin 
       m_RR_agent.m_driver.update_ready_rate($urandom_range(10,70));
-      m_RR_agent.m_driver.update_commit_rate($urandom_range(10,70));
-      m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i($urandom_range(10,70)), .ROB_two_empty_rate_i($urandom_range(10,70)));
       repeat (100) begin
         req = trans::type_id::create("req");
         start_item(req);

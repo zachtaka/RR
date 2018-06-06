@@ -22,6 +22,8 @@ package RR_pkg;
   `include "RR_trans.sv"
   // `include "RR_checker.sv"
   `include "RR_config.sv"
+  `include "RR_driver_rob.sv"
+  `include "RR_driver_flush_commit.sv"
   `include "RR_driver.sv"
   `include "RR_monitor.sv"
   `include "RR_sequencer.sv"

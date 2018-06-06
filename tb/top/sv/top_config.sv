@@ -22,7 +22,9 @@ class top_config extends uvm_object;
 
   // Do not register config class with the factory
 
-  virtual RR_if            RR_vif;            
+  virtual RR_if            RR_vif;  
+  virtual RR_if_rob        RR_vif_rob;   
+  virtual RR_if_fc         RR_vif_fc;       
 
   uvm_active_passive_enum  is_active_RR       = UVM_ACTIVE;
   bit                      checks_enable_RR;  

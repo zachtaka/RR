@@ -1,14 +1,14 @@
 package util_pkg;
-//DUT parameters
-parameter P_REGISTERS    = 64;
-parameter L_REGISTERS    = 64;
-parameter ROB_INDEX_BITS = 3;
-parameter C_NUM          = 4;
 
-parameter P_ADDR_WIDTH = $clog2(P_REGISTERS);
-parameter L_ADDR_WIDTH = $clog2(8);
-parameter L_REGS = 2 ** L_ADDR_WIDTH;
 // Testbench structs & parameters
+// ROB
+parameter int ROB_FULL_RATE = 0;
+parameter int ROB_TWO_EMPTY_RATE = 100;
+// Commit & Flush
+parameter int COMMIT_RATE = 100;
+parameter int BRANCH_MISS_RATE = 0;
+// Next stage ready
+parameter int READY_RATE = 100;
 
 
 typedef struct packed {
@@ -24,6 +24,18 @@ typedef struct packed {
 
 
 // Testbench structs
+
+
+//DUT parameters
+parameter P_REGISTERS    = 64;
+parameter L_REGISTERS    = 64;
+parameter ROB_INDEX_BITS = 3;
+parameter C_NUM          = 4;
+
+parameter P_ADDR_WIDTH = $clog2(P_REGISTERS);
+parameter L_ADDR_WIDTH = $clog2(8);
+parameter L_REGS = 2 ** L_ADDR_WIDTH;
+
 
 
 //Internal ROB configuration (per entry)

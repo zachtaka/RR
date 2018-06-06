@@ -28,8 +28,6 @@ class rename_instructions_seq extends base_sequence;
 
     // All conditions met for DUT in order to issue the instructions
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin 
       // Ins.source1 should get correct asigned reg from RAT
       source1_in_rename_range();
@@ -57,8 +55,6 @@ class rename_instructions_seq extends base_sequence;
 
     // Low commit rate to stress the free list 
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(10);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (100) begin 
       source1_in_rename_range();
       source2_in_rename_range();
@@ -74,8 +70,6 @@ class rename_instructions_seq extends base_sequence;
     // Low ready rate from IS stage that must stall the DUT
     // Issue ROB full or not two empty entries that must stall the DUT
     m_RR_agent.m_driver.update_ready_rate(50);
-    m_RR_agent.m_driver.update_commit_rate(10);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(10), .ROB_two_empty_rate_i(40));
     repeat (100) begin 
       source1_in_rename_range();
       source2_in_rename_range();

@@ -41,7 +41,14 @@ module top_th;
   // You can remove interface instances by setting generate_interface_instance = no in the interface template file
 
   RR_if  RR_if_0 ();
+  RR_if_rob RR_if_rob_0();
+  RR_if_fc  RR_if_fc_0();
+
+
+
   assign RR_if_0.clk   = clock;
+  assign RR_if_rob_0.clk = clock;
+  assign RR_if_fc_0.clk = clock;
   // assign RR_if_0.rst_n = reset;
 
   RR #(
@@ -53,22 +60,32 @@ module top_th;
   ) uut (
     .clk            (RR_if_0.clk),
     .rst_n          (RR_if_0.rst_n),
+    // RR stage ready
     .ready_o        (RR_if_0.ready_o),
+    // Instruction 1 input
     .valid_i_1      (RR_if_0.valid_i_1),
     .instruction_1  (RR_if_0.instruction_1),
+    // Instruction 2 input
     .valid_i_2      (RR_if_0.valid_i_2),
     .instruction_2  (RR_if_0.instruction_2),
-    .ready_i        (RR_if_0.ready_i),
+    // Instruction 1 output
     .valid_o_1      (RR_if_0.valid_o_1),
     .instruction_o_1(RR_if_0.instruction_o_1),
+    // Instruction 2 output
     .valid_o_2      (RR_if_0.valid_o_2),
     .instruction_o_2(RR_if_0.instruction_o_2),
-    .rob_status     (RR_if_0.rob_status),
-    .rob_requests   (RR_if_0.rob_requests),
-    .commit         (RR_if_0.commit),
-    .flush_valid    (RR_if_0.flush_valid),
-    .flush_rat_id   (RR_if_0.flush_rat_id),
-    .pr_update      (RR_if_0.pr_update),
+    // Next stage ready 
+    .ready_i        (RR_if_0.ready_i),
+    // ROB
+    .rob_status     (RR_if_rob_0.rob_status),
+    .rob_requests   (RR_if_rob_0.rob_requests),
+    // Commit
+    .commit         (RR_if_fc_0.commit),
+    // Flush
+    .flush_valid    (RR_if_fc_0.flush_valid),
+    .flush_rat_id   (RR_if_fc_0.flush_rat_id),
+    .pr_update      (),
+    // Debug port
     .CurrentRAT_dbg (RR_if_0.CurrentRAT)
   );
 

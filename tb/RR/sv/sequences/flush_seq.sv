@@ -47,7 +47,6 @@ class flush_seq extends base_sequence;
 // ------------------------   CLASS TASKS  -------------------------------------
   task flush_to_single_branch();
     `uvm_info(get_type_name(),"Starting sequence: flush_to_single_branch",UVM_MEDIUM)
-    m_RR_agent.m_driver.update_branch_mispredict_rate(100);
     // Shuffle RAT
     Shuffle_RAT();
     // Send branch
@@ -58,7 +57,6 @@ class flush_seq extends base_sequence;
 
   task flush_to_random_single_branch();
     `uvm_info(get_type_name(),"Starting sequence: flush_to_random_single_branch",UVM_MEDIUM)
-    m_RR_agent.m_driver.update_branch_mispredict_rate(20);
     // Shuffle RAT
     Shuffle_RAT();
     // Send branch 1
@@ -75,7 +73,6 @@ class flush_seq extends base_sequence;
 
   task double_branch();
     `uvm_info(get_type_name(),"Starting sequence: flush_to_random_single_branch",UVM_MEDIUM)
-    m_RR_agent.m_driver.update_branch_mispredict_rate(40);
     // Shuffle RAT
     Shuffle_RAT();
     // Send branch 1, 2
@@ -88,8 +85,6 @@ class flush_seq extends base_sequence;
 
   task Shuffle_RAT();
     m_RR_agent.m_driver.update_ready_rate(100);
-    m_RR_agent.m_driver.update_commit_rate(100);
-    m_RR_agent.m_driver.update_ROB_rates(.ROB_full_rate_i(0), .ROB_two_empty_rate_i(100));
     repeat (50) begin
       req = trans::type_id::create("req");
       start_item(req);

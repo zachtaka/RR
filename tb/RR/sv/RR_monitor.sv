@@ -23,6 +23,10 @@ class RR_monitor extends uvm_monitor;
   `uvm_component_utils(RR_monitor)
 
   virtual RR_if vif;
+  virtual RR_if_rob vif_rob;
+  virtual RR_if_fc  vif_fc;
+
+  
   trans m_trans;
   writeback_toARF commit_trans;
 
@@ -51,13 +55,13 @@ class RR_monitor extends uvm_monitor;
 		m_trans.valid_o_2       = vif.valid_o_2;
 		m_trans.instruction_o_2 = vif.instruction_o_2;
 		//Port towards ROB
-		m_trans.rob_status      = vif.rob_status; 
-		m_trans.rob_requests    = vif.rob_requests;
+		m_trans.rob_status      = vif_rob.rob_status; 
+		m_trans.rob_requests    = vif_rob.rob_requests;
 		//Commit Port
-		m_trans.commit          = vif.commit; 
+		m_trans.commit          = vif_fc.commit; 
 		//Flush Port
-		m_trans.flush_valid     = vif.flush_valid;
-		m_trans.flush_rat_id    = vif.flush_rat_id;
+		m_trans.flush_valid     = vif_fc.flush_valid;
+		m_trans.flush_rat_id    = vif_fc.flush_rat_id;
 
 		if(((m_trans.valid_i_1 || m_trans.valid_i_2)&& m_trans.ready_o)||(!m_trans.rst_n)) begin
 			analysis_port.write(m_trans);
