@@ -48,8 +48,18 @@ class checker_utils;
   endfunction : get_free_reg
 
   // Push freed reg from commit to free list
-  function void release_reg(input int id);
-    free_list.push_back(id);
+  function void release_reg(input writeback_toARF commit);
+    if(commit.valid_commit) begin
+      // If lreg inside rename range then free the preg that was assigned to lreg during rename stage
+      if(commit.ldst>7 && commit.ldst<16) begin
+        // If commit is flushed use the last preg assign else the ppreg 
+        if(commit.flushed) begin
+          free_list.push_back(commit.pdst);
+        end else begin 
+          free_list.push_back(commit.ppdst);
+        end
+      end
+    end
     assert (free_list.size()<9) else $fatal("Pushing on full free list");
   endfunction : release_reg
 

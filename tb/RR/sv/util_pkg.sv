@@ -2,8 +2,8 @@ package util_pkg;
 
 // Testbench structs & parameters
 // Instruction parameters
-parameter int INS_NUM = 5;
-parameter int TWO_INS_RATE = 40;
+parameter int INS_NUM = 100;
+parameter int TWO_INS_RATE = 100;
 parameter int SRCS_IN_RENAME_RANGE = 100;
 parameter int RENAME_RATE = 100;
 parameter int DEPENDENCE_RATE = 0;
@@ -15,6 +15,8 @@ parameter int COMMIT_RATE = 100;
 parameter int BRANCH_MISS_RATE = 0;
 // Next stage ready
 parameter int READY_RATE = 100;
+// TB structure
+parameter int PORT_NUM = 2;
 
 
 typedef struct packed {
@@ -28,9 +30,26 @@ typedef struct packed {
   logic         retired;
 } rob_request_e;
 
+typedef struct packed {
+  logic [ 5 : 0] source1    ;
+  logic [ 5 : 0] source2    ;
+  logic [ 5 : 0] source3    ;
+  logic [ 5 : 0] destination;
+  logic          renamed;
+} instruction_output;
 
+typedef struct packed {
+  logic         valid_request;
+  logic [5 : 0] lreg         ;
+  logic [5 : 0] preg         ;
+  logic [5 : 0] ppreg        ;
+} rob_output;
 
-
+typedef struct packed {
+  instruction_output [PORT_NUM-1:0] Ins_o;
+  rob_output [PORT_NUM-1:0] ROB_o;
+  bit [PORT_NUM-1:0] valid_o;
+} trans_out;
 
 //DUT parameters
 parameter P_REGISTERS    = 64;

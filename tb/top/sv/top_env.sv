@@ -30,9 +30,7 @@ class top_env extends uvm_env;
   RR_agent     m_RR_agent;   
   RR_coverage  m_RR_coverage;
 
-
-  Checker      checker_h;
-
+  Checker_v2   checker_v2_h;
   top_config   m_config;
     
   // You can remove build/connect/run_phase by setting top_env_generate_methods_inside_class = no in file common.tpl
@@ -81,11 +79,11 @@ function void top_env::build_phase(uvm_phase phase);
   m_RR_agent    = RR_agent   ::type_id::create("m_RR_agent", this);
   m_RR_coverage = RR_coverage::type_id::create("m_RR_coverage", this);
 
-  checker_h = Checker::type_id::create("checker_h", this);
-  checker_h.vif = m_RR_config.vif;
-  checker_h.vif_fc = m_RR_config.vif_fc;
-  checker_h.vif_rob = m_RR_config.vif_rob;
-
+  checker_v2_h = Checker_v2::type_id::create("checker_v2_h", this);
+  checker_v2_h.vif = m_RR_config.vif;
+  checker_v2_h.vif_fc = m_RR_config.vif_fc;
+  checker_v2_h.vif_rob = m_RR_config.vif_rob;
+  
   // You can insert code here by setting top_env_append_to_build_phase in file common.tpl
 
 endfunction : build_phase
@@ -96,8 +94,8 @@ function void top_env::connect_phase(uvm_phase phase);
 
   m_RR_agent.m_monitor.analysis_port.connect(m_RR_coverage.analysis_export);
 
-  m_RR_agent.m_monitor.analysis_port.connect(checker_h.analysis_export);
-  m_RR_agent.m_monitor.commit_port.connect(checker_h.commit_port);
+  m_RR_agent.m_driver.trans_port.connect(checker_v2_h.analysis_export);
+  m_RR_agent.m_monitor.commit_port.connect(checker_v2_h.commit);
   // You can insert code here by setting top_env_append_to_connect_phase in file common.tpl
 
 endfunction : connect_phase

@@ -21,6 +21,7 @@ class rename_instructions_seq extends uvm_sequence #(trans);
       void'(req.randomize());
       finish_item(req);
     end
+
   endtask : body
   
 
