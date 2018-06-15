@@ -22,7 +22,6 @@ package top_pkg;
   import RR_pkg::*;
 
   `include "checker_utils.sv"
-  `include "checker.sv"
   `include "Checker_v2.sv"
   `include "top_config.sv"
   `include "top_seq_lib.sv"

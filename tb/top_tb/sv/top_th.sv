@@ -41,19 +41,11 @@ module top_th;
   // You can remove interface instances by setting generate_interface_instance = no in the interface template file
 
   RR_if  RR_if_0 ();
-  RR_if_rob RR_if_rob_0();
-  RR_if_fc  RR_if_fc_0();
-
-
 
   assign RR_if_0.clk   = clock;
-  assign RR_if_rob_0.clk = clock;
-  assign RR_if_fc_0.clk = clock;
-  
   assign RR_if_0.rst_n = reset;
-  assign RR_if_rob_0.rst_n = reset;
-  assign RR_if_fc_0.rst_n = reset;
 
+  
   RR #(
     // Change parameters at util_pkg.sv
     .P_REGISTERS   (P_REGISTERS),
@@ -80,13 +72,13 @@ module top_th;
     // Next stage ready 
     .ready_i        (RR_if_0.ready_i),
     // ROB
-    .rob_status     (RR_if_rob_0.rob_status),
-    .rob_requests   (RR_if_rob_0.rob_requests),
+    .rob_status     (RR_if_0.rob_status),
+    .rob_requests   (RR_if_0.rob_requests),
     // Commit
-    .commit         (RR_if_fc_0.commit),
+    .commit         (RR_if_0.commit),
     // Flush
-    .flush_valid    (RR_if_fc_0.flush_valid),
-    .flush_rat_id   (RR_if_fc_0.flush_rat_id),
+    .flush_valid    (RR_if_0.flush_valid),
+    .flush_rat_id   (RR_if_0.flush_rat_id),
     .pr_update      (),
     // Debug port
     .CurrentRAT_dbg (RR_if_0.CurrentRAT)

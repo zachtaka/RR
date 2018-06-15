@@ -45,8 +45,6 @@ module top_tb;
       `uvm_error("top_tb", "Failed to randomize top-level configuration object" )
 
     top_env_config.RR_vif             = th.RR_if_0;
-    top_env_config.RR_vif_rob         = th.RR_if_rob_0;
-    top_env_config.RR_vif_fc          = th.RR_if_fc_0;
     top_env_config.is_active_RR       = UVM_ACTIVE;
     top_env_config.checks_enable_RR   = 1;         
     top_env_config.coverage_enable_RR = 1;         

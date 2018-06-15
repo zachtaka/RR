@@ -61,9 +61,7 @@ function void top_env::build_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "Unable to get top_config")
 
   m_RR_config                 = new("m_RR_config");         
-  m_RR_config.vif             = m_config.RR_vif;    
-  m_RR_config.vif_rob         = m_config.RR_vif_rob;  
-  m_RR_config.vif_fc          = m_config.RR_vif_fc;      
+  m_RR_config.vif             = m_config.RR_vif;          
   m_RR_config.is_active       = m_config.is_active_RR;      
   m_RR_config.checks_enable   = m_config.checks_enable_RR;  
   m_RR_config.coverage_enable = m_config.coverage_enable_RR;
@@ -81,8 +79,6 @@ function void top_env::build_phase(uvm_phase phase);
 
   checker_v2_h = Checker_v2::type_id::create("checker_v2_h", this);
   checker_v2_h.vif = m_RR_config.vif;
-  checker_v2_h.vif_fc = m_RR_config.vif_fc;
-  checker_v2_h.vif_rob = m_RR_config.vif_rob;
   
   // You can insert code here by setting top_env_append_to_build_phase in file common.tpl
 

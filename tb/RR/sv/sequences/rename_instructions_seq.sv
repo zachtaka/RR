@@ -18,10 +18,9 @@ class rename_instructions_seq extends uvm_sequence #(trans);
     repeat (INS_NUM) begin 
       req = trans::type_id::create("req");
       start_item(req);
-      void'(req.randomize());
+      if (!req.randomize()) `uvm_fatal(get_type_name(),"Failed to randomize transaction");
       finish_item(req);
     end
-
   endtask : body
   
 

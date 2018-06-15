@@ -21,13 +21,14 @@ class checker_utils;
   // If branch then checkpoint RAT
   function void checkpoint_RAT();
     saved_RAT[current_rat_id] = rat_table;
+    $display("@%0tps Saved rat_table[%0d]:%p",$time(),current_rat_id,rat_table);
     current_rat_id++;
   endfunction : checkpoint_RAT
 
   // Recover RAT to flush id
   function void recover_RAT(input int id);
     rat_table = saved_RAT[id];
-    recovered_RAT_GR = saved_RAT[id][15:8];
+    $display("@%0tps Recovered rat_table[%0d]:%p",$time(),id,rat_table);
   endfunction : recover_RAT
 
   function reset_RAT();
@@ -55,11 +56,14 @@ class checker_utils;
         // If commit is flushed use the last preg assign else the ppreg 
         if(commit.flushed) begin
           free_list.push_back(commit.pdst);
+          // $display("%0t commit pdst:%0d",$time(),commit.pdst);
         end else begin 
           free_list.push_back(commit.ppdst);
+          // $display("%0t commit ppdst:%0d",$time(),commit.ppdst);
         end
       end
     end
+
     assert (free_list.size()<9) else $fatal("Pushing on full free list");
   endfunction : release_reg
 

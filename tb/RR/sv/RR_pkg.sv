@@ -20,8 +20,8 @@ package RR_pkg;
   import uvm_pkg::*;
 
   `include "RR_trans.sv"
-  // `include "RR_checker.sv"
   `include "RR_config.sv"
+  `include "RR_driver_rd.sv"
   `include "RR_driver_rob.sv"
   `include "RR_driver_flush_commit.sv"
   `include "RR_driver.sv"
@@ -30,11 +30,9 @@ package RR_pkg;
   `include "RR_coverage.sv"
   `include "RR_agent.sv"
 
-  // `include "sequences/base_sequence.sv"
-  // `include "sequences/issue_first_instruction_seq.sv"
-  // `include "sequences/issue_both_instructions_seq.sv"
   `include "sequences/rename_instructions_seq.sv"
-  // `include "sequences/flush_seq.sv"
+  `include "sequences/flush_seq.sv"
+  `include "sequences/super_seq.sv"
   `include "RR_seq_lib.sv"
 
 endpackage : RR_pkg

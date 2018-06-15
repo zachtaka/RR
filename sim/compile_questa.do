@@ -9,10 +9,6 @@ vlog -sv ../tb/RR/sv/util_pkg.sv
 set cmd "vlog -F ../dut/files.f"
 eval $cmd
 
-# Compile interfaces
-vlog -sv ../tb/RR/sv/RR_if_rob.sv
-vlog -sv ../tb/RR/sv/RR_if_fc.sv
-
 
 set tb_name top
 set agent_list {\ 
@@ -43,9 +39,13 @@ append cmd $tb_name "_tb/sv ../tb/" $tb_name "_tb/sv/" $tb_name "_tb.sv"
 eval $cmd
 
 vopt top_tb -o top_tb_optimized +acc +cover=sbce
-vsim top_tb_optimized +UVM_TESTNAME=top_test +OPTION=3 -sv_seed random -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug  -assertcover -coverage
+coverage save -onexit test.ucdb
+vsim top_tb_optimized +UVM_TESTNAME=top_test -sv_seed 1754317693 +OPTION=3 -voptargs=+acc -uvmcontrol=all -assertcover -coverage
+
 run 0
 do wave.do
 log -r *
 set NoQuitOnFinish 1
 run -all
+
+#vcover report -html -htmldir out -verbose -threshL 50 -threshH 90 test.ucdb

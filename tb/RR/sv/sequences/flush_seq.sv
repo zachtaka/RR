@@ -2,154 +2,46 @@
 `ifndef flush_seq_sv
 `define flush_seq_sv
 
-
-class flush_seq extends base_sequence;
+import util_pkg::*;
+class flush_seq extends uvm_sequence #(trans);
 
   `uvm_object_utils(flush_seq)
 
   RR_agent  m_RR_agent;  
-
+  int branch_if_dbg;
   function new(string name = "");
     super.new(name);
   endfunction : new
 
-  task body();
-    super.do_reset();
 
-    repeat (10) begin 
-      // Many instructions with one branch will be issued
-      // This branch will be mispredicted and flush will be issued
-      // Correct RAT recovery will be also checked
-      flush_to_single_branch();
-
-      // Send idle cycles so all commits from the previous seq will be issued
-      // and i can ensure that max 4 branches will be in flight
-      repeat(50) idle();
-
-      // 4 branches will be in flight
-      // Flush to one of them
-      flush_to_random_single_branch();
-
-      repeat(50) idle();
-
-      // Send 2 double branches
-      // 4 branches will be in flight
-      // Flush to one of them
-      double_branch();
-
-      repeat(50) idle();
+  function int get_branch_if();
+    rob_request_e req;
+    branch_if_dbg = 0;
+    for (int i = (m_RR_agent.m_driver_fc.Ins_retire_pointer-1); i <  m_RR_agent.m_driver_fc.Ins_commit_pointer; i++) begin
+      req = m_RR_agent.m_driver_fc.Ins_commit_array[i];
+      if(req.is_branch && req.valid_commit) begin
+        branch_if_dbg++;
+        assert (branch_if_dbg<=C_NUM) else `uvm_fatal(get_type_name(),$sformatf("branch_if_dbg exceeded max value: %0d uncommited ins:%0d",branch_if_dbg,  m_RR_agent.m_driver_fc.Ins_commit_pointer-m_RR_agent.m_driver_fc.Ins_retire_pointer ))
+      end
     end
+    return branch_if_dbg;
+  endfunction : get_branch_if
 
-
-    super.do_reset();
-  endtask : body
-
-// ------------------------   CLASS TASKS  -------------------------------------
-  task flush_to_single_branch();
-    `uvm_info(get_type_name(),"Starting sequence: flush_to_single_branch",UVM_MEDIUM)
-    // Shuffle RAT
-    Shuffle_RAT();
-    // Send branch
-    send_single_branch();
-    // Shuffle RAT
-    Shuffle_RAT();
-  endtask : flush_to_single_branch
-
-  task flush_to_random_single_branch();
-    `uvm_info(get_type_name(),"Starting sequence: flush_to_random_single_branch",UVM_MEDIUM)
-    // Shuffle RAT
-    Shuffle_RAT();
-    // Send branch 1
-    send_single_branch();
-    // Send branch 2
-    send_single_branch();
-    // Send branch 3
-    send_single_branch();
-    // Send branch 4
-    send_single_branch();
-    // Shuffle RAT
-    Shuffle_RAT();
-  endtask : flush_to_random_single_branch
-
-  task double_branch();
-    `uvm_info(get_type_name(),"Starting sequence: flush_to_random_single_branch",UVM_MEDIUM)
-    // Shuffle RAT
-    Shuffle_RAT();
-    // Send branch 1, 2
-    send_double_branch();
-    // Send branch 3, 4
-    send_double_branch();
-    // Shuffle RAT
-    Shuffle_RAT();
-  endtask : double_branch
-
-  task Shuffle_RAT();
-    m_RR_agent.m_driver.update_ready_rate(100);
-    repeat (50) begin
+  task body();
+    repeat (INS_NUM) begin 
       req = trans::type_id::create("req");
       start_item(req);
-      req.randomize();
-      // Instruction 1
-      req.instruction_1.pc = super.pc;
-      req.valid_i_1 = 1;
-      req.instruction_1.is_valid = 1;
-      super.inc_pc();
-      // Instruction 2
-      req.instruction_2.pc = super.pc;
-      req.valid_i_2 = 1;
-      req.instruction_2.is_valid = 1;
-      super.inc_pc();
+      void'(req.randomize());
+      if(get_branch_if()<(C_NUM-1)) begin
+        req.Ins_[0].branch = ($urandom_range(0,99)<BRANCH_RATE) & req.Ins_[0].valid;
+      end
+      if(get_branch_if()<(C_NUM-2)) begin
+        req.Ins_[1].branch = ($urandom_range(0,99)<BRANCH_RATE) & req.Ins_[1].valid;
+      end
       finish_item(req);
     end
-  endtask : Shuffle_RAT
+  endtask : body
 
-  task send_single_branch();
-    req = trans::type_id::create("req");
-    start_item(req);
-    req.randomize();
-    // Instruction 1
-    req.instruction_1.is_branch = $urandom_range(0,1);
-    req.instruction_1.pc = super.pc;
-    req.valid_i_1 = 1;
-    super.inc_pc();
-    // Instruction 2
-    req.instruction_2.is_branch = !req.instruction_1.is_branch;
-    req.instruction_2.pc = super.pc;
-    req.valid_i_2 = 1;
-    super.inc_pc();
-    finish_item(req);
-  endtask : send_single_branch
-
-  task send_double_branch();
-    req = trans::type_id::create("req");
-    start_item(req);
-    req.randomize();
-    // Instruction 1
-    req.instruction_1.pc = super.pc;
-    req.instruction_1.is_branch = 1;
-    req.valid_i_1 = 1;
-    super.inc_pc();
-    // Instruction 2
-    req.instruction_2.pc = super.pc;
-    req.instruction_2.is_branch = 1;
-    req.valid_i_2 = 1;
-    req.instruction_2.is_valid = 1;
-    super.inc_pc();
-    finish_item(req);
-  endtask : send_double_branch
-
-  task idle();
-    req = trans::type_id::create("req");
-    start_item(req);
-    req.valid_i_1 = 0;
-    // Instruction 2
-    req.valid_i_2 = 0;
-    finish_item(req);
-  endtask : idle
-//------------------------------------------------------------------------------
-
-
-  
 
 endclass : flush_seq
 

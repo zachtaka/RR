@@ -272,7 +272,7 @@ module RR #(
     assert property (@(posedge clk) disable iff(!rst_n) (valid_o_2 && instr_b_rd_rename) |-> ((rob_requests.preg_2 > 7 && rob_requests.preg_2 < 16) || (rob_requests.preg_2 > 31 && rob_requests.preg_2 < 40))) else $fatal("Remaped to Wrong Preg -2");
     assert property (@(posedge clk) disable iff(!rst_n) valid_i_2 |-> valid_i_1) else $fatal("RR: Illegal Scenario");
     assert property (@(posedge clk) disable iff(!rst_n) fl_push |-> fl_ready) else $fatal("RR: Push on full FL");
-    assert property (@(posedge clk) disable iff(!rst_n) (valid_i_1 && valid_i_2 && instruction_1.is_branch) |-> !instruction_2.is_branch) else $info("RR: Two branches in the same cycle");
+    // assert property (@(posedge clk) disable iff(!rst_n) (valid_i_1 && valid_i_2 && instruction_1.is_branch) |-> !instruction_2.is_branch) else $info("RR: Two branches in the same cycle");
     
     //-----------------------------------------------------------------------------
     //BENCHMARKING COUNTER SECTION
